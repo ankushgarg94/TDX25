@@ -7,7 +7,7 @@ global with sharing class AbhaProfileService {
         RestResponse res = RestContext.response;
         String queryid = req.params.get('queryid');
         if (String.isBlank(queryid)) {
-            res.statusCode = 400;
+            res.statusCode = 210;
             res.responseBody = Blob.valueOf(buildErrorResponse('ABDM-1000', 'Missing either Aadhaar or ABHA number.'));
             res.addHeader('Content-Type', 'application/json');
             return;
@@ -24,7 +24,7 @@ global with sharing class AbhaProfileService {
         ];
     
          if (abhaRecords.isEmpty()) {
-            res.statusCode = 404;
+            res.statusCode = 201;
             res.responseBody = Blob.valueOf(buildErrorResponse('ABDM-1030', 'Record not found'));
             res.addHeader('Content-Type', 'application/json');
             return;

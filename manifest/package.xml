@@ -18,7 +18,20 @@
 	</types>
 	<types>
 		<members>Mock_Abha__c</members>
+		<members>UserExternalCredential</members>
 		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Abha_External_Cred</members>
+		<name>ExternalCredential</name>
+	</types>
+	<types>
+		<members>AbhaExternalService</members>
+		<name>ExternalServiceRegistration</name>
+	</types>
+	<types>
+		<members>Account_Record_Page</members>
+		<name>FlexiPage</name>
 	</types>
 	<types>
 		<members>Create_Patient_Record</members>
@@ -33,8 +46,17 @@
 		<name>GenAiPromptTemplate</name>
 	</types>
 	<types>
+		<members>*</members>
+		<name>NamedCredential</name>
+	</types>
+	<types>
 		<members>sfdcInternalInt__sfdc_a360_sfcrm_data_extract</members>
 		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>Admin</members>
+		<members>Einstein Agent User</members>
+		<name>Profile</name>
 	</types>
 	<version>63.0</version>
 </Package>

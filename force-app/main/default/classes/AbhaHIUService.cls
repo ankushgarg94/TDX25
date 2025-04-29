@@ -10,7 +10,7 @@ global with sharing class AbhaHIUService {
         queryid= queryid.replaceAll('[^0-9]', '');
         
         if (String.isBlank(queryid)) {
-            res.statusCode = 400;
+            res.statusCode = 201;
             res.responseBody = Blob.valueOf(buildErrorResponse('ABDM-1000', 'Missing either Aadhaar or ABHA number.'));
             res.addHeader('Content-Type', 'application/json');
             return;
@@ -27,7 +27,7 @@ global with sharing class AbhaHIUService {
         ];
     	
         if (abhaRecords.isEmpty()) {
-            res.statusCode = 404;
+            res.statusCode = 201;
             res.responseBody = Blob.valueOf(buildErrorResponse('ABDM-1030', 'Record not found'));
             res.addHeader('Content-Type', 'application/json');
             return;
@@ -35,7 +35,7 @@ global with sharing class AbhaHIUService {
 
         Mock_Abha__c record = abhaRecords[0];
         if (record.Patient_History__c == null || record.Patient_History__c.trim() == '') {
-            res.statusCode = 404;
+            res.statusCode = 201;
             res.responseBody = Blob.valueOf(buildErrorResponse('ABDM-1031', 'No HIU data available'));
             res.addHeader('Content-Type', 'application/json');
             return;

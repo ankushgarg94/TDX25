@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</activeVersionIdentifier>
+    <developerName>Convert_DateTime_using_Time_Zone</developerName>
+    <masterLabel>Convert DateTime using Time Zone</masterLabel>
+    <templateVersions>
+        <content>Convert the Appointment Slot From UTC to the given Time Zone.
+Slot: {!$Input:Appointment_Slot}
+TIimeZone:{!$Input:TimeZone}
+
+If big data with multiple datetime is given convert all
+
+Example : Input:  2025-04-30 02:30:00Z - 2025-04-30 03:30:00Z Time Zone: Asia/Kolkata
+Output for datetime. but apply for all data. Include all data in output with just datetime replaced: 2025-04-30 08:00 - 2025-04-30 09:00 
+Note do it in 24hr time
+
+
+
+</content>
+        <inputs>
+            <apiName>TimeZone</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>TimeZone</masterLabel>
+            <referenceName>Input:TimeZone</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Appointment_Slot</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Appointment Slot</masterLabel>
+            <referenceName>Input:Appointment_Slot</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

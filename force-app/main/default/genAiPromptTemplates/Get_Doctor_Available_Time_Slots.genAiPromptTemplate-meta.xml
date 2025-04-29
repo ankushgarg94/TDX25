@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_5</activeVersionIdentifier>
+    <description>Get All Doctors Available Time Slots for the Day</description>
+    <developerName>Get_Doctor_Available_Time_Slots</developerName>
+    <masterLabel>Get Doctor Available Time Slots</masterLabel>
+    <templateVersions>
+        <content>Based on DoctorData, DoctorEventBookedData, TimeSlotData and PreviouslySeenDoctors Should give doctors available timings for the data. Time Zone is India +5.30
+DoctorData Contains Name,Doctor Id and Operating hours Id
+DoctorEventBookedData Contains the already booked timings of the doctor for that day. This will tell which timeslots between should not be shown in the output. For example if it is between 2 pm to 3 pm then u will not show 2:00 PM , 2:30 PM Time Slot
+TimeSlotData Contains the doctors working Hours for that day. 
+PreviouslySeenDoctors Contains Doctor Name and Doctor id
+ 
+Note: Doctor Id, Operating Hrs Id are used as foreign keys for connecting each data. 
+ 
+The Data:
+DoctorData: {!$Input:DoctorData}
+DoctorEventBookedData: {!$Input:DoctorEventBookedData}
+TimeSlotData: {!$Input:TimeSlotData}
+PreviouslySeenDoctors: {!$Input:PreviouslySeenDoctors}
+ 
+So based on this give output like below for all doctors.
+
+ 
+Example:
+ 
+Name: Ashok Kumar (Preferred - Previously Seen) Note: (Preferred - Previously Seen) is shown only if the PreviouslySeenDoctors data matches with Doctor Data and if that doctor is already Seen.
+Available Time Slots: 8:00 AM,8:30 AM,9:00 AM,9:30 AM,12:00 PM,1:00 PM Note: the input data might be in 24hrs time so calculate based on that and show as per example.
+Show all doctors then tell
+ 
+Type Doctor Name and Time Slot to schedule appointment.
+</content>
+        <inputs>
+            <apiName>DoctorData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorData</masterLabel>
+            <referenceName>Input:DoctorData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>DoctorEventBookedData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorEventBookedData</masterLabel>
+            <referenceName>Input:DoctorEventBookedData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>TimeSlotData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>TimeSlotData</masterLabel>
+            <referenceName>Input:TimeSlotData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>PreviouslySeenDoctors</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PreviouslySeenDoctors</masterLabel>
+            <referenceName>Input:PreviouslySeenDoctors</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Based on DoctorData, DoctorEventBookedData, TimeSlotData and PreviouslySeenDoctors Should give doctors available timings for the data. Time Zone is India +5.30
+DoctorData Contains Name,Doctor Id and Operating hours Id
+DoctorEventBookedData Contains the already booked timings of the doctor for that day. This will tell which timeslots between should not be shown in the output. For example if it is between 2 pm to 3 pm then u will not show 2:00 PM , 2:30 PM Time Slot
+TimeSlotData Contains the doctors working Hours for that day. 
+PreviouslySeenDoctors Contains Doctor Name and Doctor id
+ 
+Note: Doctor Id, Operating Hrs Id are used as foreign keys for connecting each data. 
+ 
+The Data:
+DoctorData: {!$Input:DoctorData}
+DoctorEventBookedData: {!$Input:DoctorEventBookedData}
+TimeSlotData: {!$Input:TimeSlotData}
+PreviouslySeenDoctors: {!$Input:PreviouslySeenDoctors}
+ 
+So based on this give output like below for all doctors.
+
+ 
+Example:
+ 
+Name: Ashok Kumar (Preferred - Previously Seen) Note: (Preferred - Previously Seen) is shown only if the PreviouslySeenDoctors data matches with Doctor Data and if that doctor is already Seen.
+Available Time Slots: 8:00 AM,8:30 AM,9:00 AM,9:30 AM,12:00 PM,1:00 PM Note: the input data might be in 24hrs time so calculate based on that and show as per example.
+Show all doctors then tell
+ 
+Type Doctor Name and Time Slot to schedule appointment.
+</content>
+        <inputs>
+            <apiName>DoctorData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorData</masterLabel>
+            <referenceName>Input:DoctorData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>DoctorEventBookedData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorEventBookedData</masterLabel>
+            <referenceName>Input:DoctorEventBookedData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>TimeSlotData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>TimeSlotData</masterLabel>
+            <referenceName>Input:TimeSlotData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>PreviouslySeenDoctors</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PreviouslySeenDoctors</masterLabel>
+            <referenceName>Input:PreviouslySeenDoctors</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Draft</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Based on DoctorData, DoctorEventBookedData, TimeSlotData, and PreviouslySeenDoctors, find doctors&apos; available timings.
+ 
+DoctorData Contains Name,Doctor Id,Operating hours Id and Time Zone
+ 
+DoctorEventBookedData Contains the already booked timings of the doctor for that day. This will tell which timeslots between should not be shown in the output. For example if it is between 2 pm to 2.30 pm then u will not show 2:00 PM Time Slot.
+
+TimeSlotData Contains the doctors working Hours for that day.
+ 
+PreviouslySeenDoctors Contains Doctor Name and Doctor id
+ 
+Note: Doctor Id, Operating Hrs Id are used as foreign keys for connecting each data.
+ 
+The Data:
+DoctorData: {!$Input:DoctorData}
+DoctorEventBookedData (Note We get GMT Time in this data so adjust with doctor&apos;s Time zone. {!$Input:DoctorEventBookedData}
+TimeSlotData: {!$Input:TimeSlotData}
+PreviouslySeenDoctors: {!$Input:PreviouslySeenDoctors}
+ 
+So based on this give output like below for all doctors.
+ 
+ 
+Example:
+
+I have noticed you never taken the time zone in consideration please validate your output 10 times and then give.Please confirm you are confirming but not takng that into consideation
+ 
+Name: Ashok Kumar (Preferred - Previously Seen) Note: (Preferred - Previously Seen) is shown only if the PreviouslySeenDoctors data matches with Doctor Data and if that doctor is already Seen.
+Example Available Time Slots: 2:00PM, 3:30PM, 6:00PM in a line Note: the input data might be in 24hrs time so calculate based on that and show as per example. Also Show Previously Seen Doctor First.
+Show all doctors then tell.
+ 
+Choose Doctor Name and Time Slot to schedule appointment.
+
+
+</content>
+        <inputs>
+            <apiName>DoctorData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorData</masterLabel>
+            <referenceName>Input:DoctorData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>DoctorEventBookedData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorEventBookedData</masterLabel>
+            <referenceName>Input:DoctorEventBookedData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>TimeSlotData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>TimeSlotData</masterLabel>
+            <referenceName>Input:TimeSlotData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>PreviouslySeenDoctors</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PreviouslySeenDoctors</masterLabel>
+            <referenceName>Input:PreviouslySeenDoctors</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Based on DoctorData, DoctorEventBookedData, TimeSlotData, and PreviouslySeenDoctors, find doctors&apos; available timings.
+ 
+DoctorData Contains Name,Doctor Id,Operating hours Id and Time Zone
+ 
+DoctorEventBookedData Contains the already booked timings of the doctor for that day. This will tell which timeslots between should not be shown in the output. For example if it is between 2:00 pm to 2:30 pm then u will not show 2:00 PM Time Slot but will show 2:30 PM since 2 pm to 2:30 pm as per example he is booked but free at 2:30 pm
+
+TimeSlotData Contains the doctors working Hours for that day.
+ 
+PreviouslySeenDoctors Contains Doctor Name and Doctor id
+ 
+Note: Doctor Id, Operating Hrs Id are used as foreign keys for connecting each data.
+ 
+The Data:
+DoctorData: {!$Input:DoctorData}
+DoctorEventBookedData (Note We get GMT Time in this data so adjust with doctor&apos;s Time zone. {!$Input:DoctorEventBookedData}
+TimeSlotData: {!$Input:TimeSlotData}
+PreviouslySeenDoctors: {!$Input:PreviouslySeenDoctors}
+ 
+So based on this give output like below for all doctors.
+ 
+ 
+Example:
+
+I have noticed you never taken the time zone in consideration please validate your output 10 times and then give.Please confirm you are confirming but not takng that into consideation
+ 
+Name: Ashok Kumar (Preferred - Previously Seen) Note: (Preferred - Previously Seen) is shown only if the PreviouslySeenDoctors data matches with Doctor Data and if that doctor is already Seen.
+Example Available Time Slots: 2:00PM, 3:30PM, 6:00PM in a line Note: the input data might be in 24hrs time so calculate based on that and show as per example. Also Show Previously Seen Doctor First.
+Show all doctors then tell.
+ 
+Choose Doctor Name and Time Slot to schedule appointment.
+
+
+</content>
+        <inputs>
+            <apiName>PreviouslySeenDoctors</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PreviouslySeenDoctors</masterLabel>
+            <referenceName>Input:PreviouslySeenDoctors</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>TimeSlotData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>TimeSlotData</masterLabel>
+            <referenceName>Input:TimeSlotData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>DoctorEventBookedData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorEventBookedData</masterLabel>
+            <referenceName>Input:DoctorEventBookedData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>DoctorData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorData</masterLabel>
+            <referenceName>Input:DoctorData</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Based on DoctorData, DoctorEventBookedData, TimeSlotData, and PreviouslySeenDoctors, find doctors&apos; available timings.
+ 
+DoctorData Contains Name,Doctor Id,Operating hours Id and Time Zone
+ 
+DoctorEventBookedData Contains the already booked timings of the doctor for that day. This will tell which timeslots between should not be shown in the output. For example if it is between 2:00 pm to 2:30 pm then u will not show 2:00 PM Time Slot
+
+TimeSlotData Contains the doctors working Hours for that day.
+ 
+PreviouslySeenDoctors Contains Doctor Name and Doctor id
+ 
+Note: Doctor Id, Operating Hrs Id are used as foreign keys for connecting each data.
+ 
+The Data:
+DoctorData: {!$Input:DoctorData}
+DoctorEventBookedData (Note We get GMT Time in this data so adjust with doctor&apos;s Time zone. {!$Input:DoctorEventBookedData}
+TimeSlotData: {!$Input:TimeSlotData}
+PreviouslySeenDoctors: {!$Input:PreviouslySeenDoctors}
+ 
+So based on this give output like below for all doctors.
+ 
+ 
+Example:
+
+I have noticed you never taken the time zone in consideration please validate your output 10 times and then give.Please confirm you are confirming but not takng that into consideation
+ 
+Doctor Name: Ashok Kumar (Preferred - Previously Seen) Note: (Preferred - Previously Seen) is shown only if the PreviouslySeenDoctors data matches with Doctor Data and if that doctor is already Seen. Show Specialty afterdoctor name with &quot;| Specialty:&quot;.
+Example Available Time Slots: 2:00PM, 3:30PM, 6:00PM in a line Note: the input data might be in 24hrs time so calculate based on that and show as per example. Also Show Previously Seen Doctor First.
+Show all doctors then tell.
+ 
+Choose Doctor Name and Time Slot to schedule appointment.
+
+
+</content>
+        <inputs>
+            <apiName>DoctorData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorData</masterLabel>
+            <referenceName>Input:DoctorData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>DoctorEventBookedData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorEventBookedData</masterLabel>
+            <referenceName>Input:DoctorEventBookedData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>TimeSlotData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>TimeSlotData</masterLabel>
+            <referenceName>Input:TimeSlotData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>PreviouslySeenDoctors</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PreviouslySeenDoctors</masterLabel>
+            <referenceName>Input:PreviouslySeenDoctors</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_5</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

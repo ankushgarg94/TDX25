@@ -27,6 +27,12 @@
 		<name>Flow</name>
 	</types>
 	<types>
+		<members>Convert_DateTime_using_Time_Zone</members>
+		<members>Get_Doctor_Available_Time_Slots</members>
+		<members>Get_Specialty_based_on_Symptoms</members>
+		<name>GenAiPromptTemplate</name>
+	</types>
+	<types>
 		<members>sfdcInternalInt__sfdc_a360_sfcrm_data_extract</members>
 		<name>PermissionSet</name>
 	</types>

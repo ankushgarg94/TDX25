@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>AbhaHIUService</members>
+		<members>AbhaProfileService</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>Account.Aadhaar_Number__c</members>
+		<members>Account.Chronic_Conditions__c</members>
+		<members>Account.Known_Allergies__c</members>
+		<members>ClinicalEncounter.Outcome__c</members>
+		<members>ClinicalEncounter.Reason__c</members>
+		<members>ServiceResource.Operating_Hours__c</members>
+		<members>ServiceResource.Specialty__c</members>
+		<members>TimeSlot.Available_Time__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
 		<members>Mock_Abha__c</members>
 		<name>CustomObject</name>
 	</types>

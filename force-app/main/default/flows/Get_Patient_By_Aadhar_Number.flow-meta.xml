@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Patient_Response</name>
+        <label>Assign Patient Response</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>patientResponse</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>patientResponseFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>This flow is invoked by agentforce agents to get the patient details using the aadhar number input by the user.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>patientResponseFormula</name>
+        <dataType>String</dataType>
+        <expression>&quot;Patient found: &quot; &amp; {!Get_Patient_By_Aadhar_Number.Name} &amp; BR() &amp; 
+&quot;AccountId: &quot; &amp; {!Get_Patient_By_Aadhar_Number.Id} &amp; BR() &amp; 
+&quot; (DOB: &quot; &amp; TEXT({!Get_Patient_By_Aadhar_Number.PersonBirthdate}) &amp; BR() &amp; 
+&quot;), Gender: &quot; &amp; TEXT({!Get_Patient_By_Aadhar_Number.PersonGender}) &amp;  &quot;.&quot;</expression>
+    </formulas>
+    <interviewLabel>Get Patient By Aadhar Number {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get Patient By Aadhar Number</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Patient_By_Aadhar_Number</name>
+        <label>Get Patient By Aadhar Number</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Patient_Response</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Aadhaar_Number__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>aadharNumber</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsPersonAccount</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Patient_By_Aadhar_Number</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>aadharNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>patientResponse</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

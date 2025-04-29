@@ -20,5 +20,15 @@
 		<members>Mock_Abha__c</members>
 		<name>CustomObject</name>
 	</types>
+	<types>
+		<members>Create_Patient_Record</members>
+		<members>Get_All_Available_Doctor_s_Time_Slots</members>
+		<members>Get_Patient_By_Aadhar_Number</members>
+		<name>Flow</name>
+	</types>
+	<types>
+		<members>sfdcInternalInt__sfdc_a360_sfcrm_data_extract</members>
+		<name>PermissionSet</name>
+	</types>
 	<version>63.0</version>
 </Package>

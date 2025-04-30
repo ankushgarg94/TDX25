@@ -1,0 +1,35 @@
+{
+  "required" : [ "DoctorId", "PatientId", "StartDateTime", "Symptoms" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "DoctorId" : {
+      "title" : "DoctorId",
+      "description" : "This is the 18 digit Id of the Doctor. Do not ask this from the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "PatientId" : {
+      "title" : "PatientId",
+      "description" : "This is the record ID of the patient in context. Do not ask this from the user",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "StartDateTime" : {
+      "title" : "StartDateTime",
+      "description" : "Start Date Time of the Appointment that the user has selected",
+      "lightning:type" : "lightning__dateTimeStringType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "Symptoms" : {
+      "title" : "Symptoms",
+      "description" : "Symptom of the Patient",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

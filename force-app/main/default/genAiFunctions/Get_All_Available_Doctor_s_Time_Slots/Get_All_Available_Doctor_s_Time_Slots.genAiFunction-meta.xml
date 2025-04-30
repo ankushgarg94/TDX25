@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Action is used to get all doctors with their available appointment slots for patient to select based on their symptom and appointment date</description>
+    <invocationTarget>Get_All_Available_Doctor_s_Time_Slots</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <masterLabel>Get All Available Doctor&apos;s Time Slots</masterLabel>
+</GenAiFunction>

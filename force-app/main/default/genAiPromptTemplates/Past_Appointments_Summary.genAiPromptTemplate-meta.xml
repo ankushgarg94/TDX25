@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</activeVersionIdentifier>
+    <developerName>Past_Appointments_Summary</developerName>
+    <masterLabel>Past Appointments Summary</masterLabel>
+    <templateVersions>
+        <content>You need to display the Past Appointments Summary in certain format. Also you have to format the time inthe put to Asia/Kolkata tie zone. Example:Ashok Kumar(2025-04-30 02:30:00Z to 2025-04-30 03:00:00Z) to Ashok Kumar (25th April from 8:00 AM to 8:30 AM)
+Input: {!$Input:EventData}
+Output:
+Past Appointments:
+</content>
+        <inputs>
+            <apiName>EventData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>EventData</masterLabel>
+            <referenceName>Input:EventData</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

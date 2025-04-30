@@ -3,10 +3,42 @@
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
+        <name>Assign_Benefit_Items_Response</name>
+        <label>Assign Benefit Items Response</label>
+        <locationX>138</locationX>
+        <locationY>974</locationY>
+        <assignmentItems>
+            <assignToReference>coverageResponseSF</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>coverageResponse</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_on_Benefit_Items</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Coverage_Benefit_Ids</name>
+        <label>Assign Coverage Benefit Ids</label>
+        <locationX>138</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>coverageBenefitIdCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Iterate_on_Coverage_Benefits.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_on_Coverage_Benefits</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Patient_Response</name>
         <label>Assign Patient Response</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationX>182</locationX>
+        <locationY>1250</locationY>
         <assignmentItems>
             <assignToReference>patientResponse</assignToReference>
             <operator>Assign</operator>
@@ -15,8 +47,55 @@
             </value>
         </assignmentItems>
     </assignments>
+    <decisions>
+        <name>Check_If_Patient_Found</name>
+        <label>Check If Patient Found</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Patient_Response</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Patient_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Patient_By_Aadhar_Number</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Coverage_Benefits</targetReference>
+            </connector>
+            <label>Patient Found</label>
+        </rules>
+    </decisions>
     <description>This flow is invoked by agentforce agents to get the patient details using the aadhar number input by the user.</description>
     <environments>Default</environments>
+    <formulas>
+        <name>coverageResponse</name>
+        <dataType>String</dataType>
+        <expression>&quot;Coverage Provider: &quot; &amp; {!Iterate_on_Benefit_Items.CoverageBenefit.MemberPlan.Payer.Name} &amp; BR() &amp;
+&quot;Plan Name: &quot; &amp; {!Iterate_on_Benefit_Items.CoverageBenefit.Member.Name} &amp; BR() &amp;
+&quot;Coverage Type: &quot; &amp; TEXT({!Iterate_on_Benefit_Items.CoverageBenefit.CoverageType}) &amp; BR() &amp;
+&quot;Policy Number: &quot; &amp; {!Iterate_on_Benefit_Items.CoverageBenefit.MemberPlan.MemberNumber} &amp; BR() &amp;
+&quot;Coverage Period: &quot; &amp; TEXT({!Iterate_on_Benefit_Items.CoverageBenefit.BenefitPeriodStartDate}) &amp; &quot; to &quot; &amp; TEXT({!Iterate_on_Benefit_Items.CoverageBenefit.BenefitPeriodEndDate}) &amp; BR() &amp; BR() &amp;
+
+&quot;**In-Network Coverage:** &quot; &amp; BR() &amp;
+{!Iterate_on_Benefit_Items.InNetworkCoverage} &amp; BR() &amp; 
+&quot;Emergency Department Co-pay: ₹&quot; &amp; TEXT({!Iterate_on_Benefit_Items.CoverageBenefit.EmergencyDepartmentCopay}) &amp; BR() &amp;
+
+
+
+&quot;**Notes:** &quot; &amp; BR() &amp;
+{!Iterate_on_Benefit_Items.Notes} &amp; BR() &amp;
+&quot;Deductible: &quot; &amp; {!Iterate_on_Benefit_Items.CoverageBenefit.DeductibleNotes} &amp; BR() &amp;
+&quot;Coinsurance: &quot; &amp; {!Iterate_on_Benefit_Items.CoverageBenefit.CoinsuranceNotes} &amp; BR() &amp;
+&quot;Co-pay: &quot; &amp; {!Iterate_on_Benefit_Items.CoverageBenefit.CopayNotes} &amp; BR() &amp;
+&quot;Coverage valid for: &quot; &amp; {!Iterate_on_Benefit_Items.TimePeriod} &amp; BR()</expression>
+    </formulas>
     <formulas>
         <name>patientResponseFormula</name>
         <dataType>String</dataType>
@@ -27,6 +106,34 @@
     </formulas>
     <interviewLabel>Get Patient By Aadhar Number {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Get Patient By Aadhar Number</label>
+    <loops>
+        <name>Iterate_on_Benefit_Items</name>
+        <label>Iterate on Benefit Items</label>
+        <locationX>50</locationX>
+        <locationY>866</locationY>
+        <collectionReference>Get_Coverage_Benefit_Items</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Benefit_Items_Response</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Patient_Response</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Iterate_on_Coverage_Benefits</name>
+        <label>Iterate on Coverage Benefits</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <collectionReference>Get_Coverage_Benefits</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Coverage_Benefit_Ids</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Coverage_Benefit_Items</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -47,13 +154,55 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <name>Get_Coverage_Benefit_Items</name>
+        <label>Get Coverage Benefit Items</label>
+        <locationX>50</locationX>
+        <locationY>758</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterate_on_Benefit_Items</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CoverageBenefitId</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>coverageBenefitIdCollection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CoverageBenefitItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Coverage_Benefits</name>
+        <label>Get Coverage Benefits</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Iterate_on_Coverage_Benefits</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MemberId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Patient_By_Aadhar_Number.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CoverageBenefit</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Patient_By_Aadhar_Number</name>
         <label>Get Patient By Aadhar Number</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_Patient_Response</targetReference>
+            <targetReference>Check_If_Patient_Found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -76,7 +225,7 @@
     </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Patient_By_Aadhar_Number</targetReference>
@@ -89,6 +238,20 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>coverageBenefitIdCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>coverageResponseSF</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
     </variables>
     <variables>
         <name>patientResponse</name>

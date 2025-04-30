@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Get_Available_Doctor_Slots_V2</developerName>
+    <masterLabel>Get Available Doctor Slots V2</masterLabel>
+    <templateVersions>
+        <content>You are given today&apos;s current time and a list of doctors. Each doctor has:
+- Name
+- Doctor ID
+- Specialty
+- Operating hours (e.g., 10:00 - 12:00)
+- Booked time slots (e.g., 10:30 - 11:00)
+- Whether they previously interacted with the patient (Yes/No)
+
+Your task is to generate **available 30-minute appointment slots per doctor**, ensuring the following rules are strictly followed.
+
+---
+
+CurrentDateTime: {!$Input:CurrentTime}  
+DoctorTimingInfo: {!$Input:DoctorTimingInfo}
+
+---
+
+Instructions:
+1. For each doctor:
+  - Parse the operating hours (StartTime, EndTime).
+  - Generate all 30-minute slots from StartTime (inclusive) to EndTime (exclusive).
+  - Only include slots that **start after CurrentDateTime** 
+  - Exclude slots that exactly match any booked time range.
+2. Time slots must be formatted in **12-hour format with AM/PM** (e.g., `10:00 AM - 10:30 AM`).
+3. If a doctor has `Previously Interacted: Yes`, show `(Preferred - Previously Seen)` next to the name.
+4. If **no slots are available**, output exactly: `No Slots Available`.
+5. Follow this **strict output format per doctor**:
+
+Doctor Name: {Doctor Name} {(Preferred - Previously Seen if applicable)} | Specialty: {Specialty}  
+Available Time Slots: Slot 1: {Slot 1}, Slot 2: {Slot 2}, ...  
+
+6. End the response with:
+**Choose Doctor Name and Time Slot to schedule appointment.**
+
+</content>
+        <inputs>
+            <apiName>DoctorTimingInfo</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>DoctorTimingInfo</masterLabel>
+            <referenceName>Input:DoctorTimingInfo</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>CurrentTime</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>CurrentTime</masterLabel>
+            <referenceName>Input:CurrentTime</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Draft</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

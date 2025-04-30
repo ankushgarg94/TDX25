@@ -1,0 +1,14 @@
+{
+  "required" : [ "ID" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "ID" : {
+      "title" : "ID",
+      "description" : "This will be a text field containing the Aadhaar Number or the Abha ID provided by the user",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

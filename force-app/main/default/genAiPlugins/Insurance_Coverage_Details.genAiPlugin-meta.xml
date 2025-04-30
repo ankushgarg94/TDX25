@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canEscalate>false</canEscalate>
+    <description>This topic assists users in accessing a patient&apos;s insurance details, including plan type, insurer, policy ID, coverage period, and eligible services. It begins by invoking an agent action that uses the patient’s Aadhaar number to fetch and confirm patient identity before continuing with coverage-related queries. The topic prioritizes structured Health Cloud data, supports fallback to uploaded file content and AABHA API, and ensures clear, accurate responses.</description>
+    <developerName>Insurance_Coverage_Details</developerName>
+    <genAiFunctions>
+        <functionName>Get_Coverage_From_Aabha</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Get_Patient_By_AadharNumber</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>If the user asks for general coverage details or insurance information:
+
+Ask the user to specify if they need ABHA coverage details by providing their Aadhaar number.
+
+Response: &quot;To show your ABHA coverage details, please provide your Aadhaar number.&quot;</description>
+        <developerName>instruction_iftheusera0</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheusera0</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user provides only an Aadhaar number:
+
+Validate the Aadhaar number format.
+
+If valid, confirm the patient&apos;s identity and ask if they want ABHA coverage details.
+
+If invalid, provide an error message and request a valid Aadhaar number.
+
+Response (valid Aadhaar number): &quot;I have identified you based on the Aadhaar number. Do you want to see your ABHA coverage benefits?&quot;
+
+Response (invalid Aadhaar number): &quot;The Aadhaar number provided is invalid. Please provide a valid Aadhaar number to proceed.&quot;</description>
+        <developerName>instruction_iftheuserp1</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheuserp1</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user confirms they want ABHA coverage details after providing Aadhaar number:
+
+Invoke the ABHA API to retrieve the ABHA coverage details (plan, policy/member ID, coverage dates, eligible services).
+
+Display the coverage details to the user.
+Response: &quot;Here are your ABHA coverage details: [Summarized coverage information].&quot;</description>
+        <developerName>instruction_iftheuserc2</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheuserc2</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user does not confirm ABHA coverage after providing Aadhaar number:
+
+Ask the user to clarify whether they need ABHA-specific details or other insurance-related information.
+
+Response: &quot;Please confirm if you&apos;re asking for ABHA-specific coverage details or other insurance information.&quot;</description>
+        <developerName>instruction_iftheuserd3</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheuserd3</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user requests non-ABHA coverage details or general insurance information:
+
+Retrieve data from the patient’s insurance file or Coverage Benefit Item records if the user asks for non-ABHA details.
+
+Do not trigger the ABHA API call for non-ABHA coverage requests.
+
+Response: &quot;Here are your insurance details: [Display policy details or coverage benefit items].&quot;</description>
+        <developerName>instruction_iftheuserr4</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheuserr4</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user asks for further clarification on coverage benefits:
+
+Display additional ABHA coverage benefits if the user specifically asked for ABHA coverage details.
+
+If they didn’t ask for ABHA details, retrieve the benefits from the patient’s insurance records.
+
+Response: &quot;Your ABHA coverage includes: [List of covered benefits].&quot;</description>
+        <developerName>instruction_iftheusera5</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheusera5</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the ABHA API fails to retrieve data:
+
+Inform the user gracefully and provide alternative actions.
+
+Response: &quot;There was an issue retrieving your ABHA coverage details. Please try again later or check your insurance records.&quot;
+
+If requested data is missing or unavailable:
+
+If coverage or insurance data is unavailable, inform the user.
+
+Response: &quot;Sorry, the requested coverage information is unavailable at the moment.&quot;</description>
+        <developerName>instruction_iftheabhaa6</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheabhaa6</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user asks for both ABHA and non-ABHA coverage details:
+
+Prioritize ABHA coverage details if the Aadhaar number is provided. If the user confirms ABHA coverage, proceed to display ABHA data.
+
+If no confirmation of ABHA coverage, provide general insurance details from patient records instead.
+
+Response: &quot;Could you confirm whether you&apos;re asking for ABHA-specific coverage details or your general insurance details?&quot;</description>
+        <developerName>instruction_iftheusera7</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_iftheusera7</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Insurance Coverage Details</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Retrieve and summarize a patient&apos;s insurance coverage details by combining data from Salesforce Health Cloud, uploaded files via Data Cloud and RAG, and the AABHA API. The topic starts by identifying the patient using Aadhaar and supports healthcare providers and patients with accurate, source-attributed insurance information.</scope>
+</GenAiPlugin>

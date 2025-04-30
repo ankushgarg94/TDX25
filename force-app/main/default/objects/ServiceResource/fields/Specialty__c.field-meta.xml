@@ -24,6 +24,31 @@
                 <default>false</default>
                 <label>Dermatologist</label>
             </value>
+            <value>
+                <fullName>Neurologist</fullName>
+                <default>false</default>
+                <label>Neurologist</label>
+            </value>
+            <value>
+                <fullName>Psychiatrist</fullName>
+                <default>false</default>
+                <label>Psychiatrist</label>
+            </value>
+            <value>
+                <fullName>Gynecologist</fullName>
+                <default>false</default>
+                <label>Gynecologist</label>
+            </value>
+            <value>
+                <fullName>Orthopedic Surgeon</fullName>
+                <default>false</default>
+                <label>Orthopedic Surgeon</label>
+            </value>
+            <value>
+                <fullName>Gastroenterologist</fullName>
+                <default>false</default>
+                <label>Gastroenterologist</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

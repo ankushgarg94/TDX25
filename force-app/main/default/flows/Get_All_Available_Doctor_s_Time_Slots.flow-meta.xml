@@ -8,13 +8,115 @@
         <actionName>Convert_DateTime_using_Time_Zone</actionName>
         <actionType>generatePromptResponse</actionType>
         <connector>
-            <targetReference>Get_Doctor_Available_Time_Slots</targetReference>
+            <targetReference>Get_Current_Date_Time_to_ITC</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:TimeZone</name>
+            <value>
+                <stringValue>Asia/Kolkata</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Appointment_Slot</name>
+            <value>
+                <elementReference>DoctorsBookedEventsFinalData</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Convert_DateTime_using_Time_Zone</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>DoctorsBookedEventsFinalData</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Create_Structured_Data</name>
+        <label>Create Structured Data</label>
+        <locationX>182</locationX>
+        <locationY>3506</locationY>
+        <actionName>Doctor_Event_Mapping</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Get_Available_Slots</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:PreviouslyInteractedData</name>
+            <value>
+                <elementReference>PreviouslyInteractedDoctorNamesFinal</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:DoctorEventData</name>
+            <value>
+                <elementReference>DoctorsBookedEventsFinalData</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:DoctorData</name>
+            <value>
+                <elementReference>DoctorFinalData</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:TimeSlot</name>
+            <value>
+                <elementReference>TimeSlotFinalData</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Doctor_Event_Mapping</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Available_Slots</name>
+        <label>Get Available Slots</label>
+        <locationX>182</locationX>
+        <locationY>3614</locationY>
+        <actionName>Get_Appointment_Slots_V3</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Assign_Final_Prompt_Response</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:Appointment_Date</name>
+            <value>
+                <elementReference>DateOfAppointment</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Today_DateTime</name>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Input:Doctor_Timing_Info</name>
+            <value>
+                <elementReference>Create_Structured_Data.promptResponse</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Get_Appointment_Slots_V3</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Current_Date_Time_to_ITC</name>
+        <label>Get Current Date Time to ITC</label>
+        <locationX>182</locationX>
+        <locationY>3398</locationY>
+        <actionName>Convert_DateTime_using_Time_Zone</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Create_Structured_Data</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>Input:Appointment_Slot</name>
             <value>
-                <elementReference>DoctorsBookedEventsFinalData</elementReference>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -26,44 +128,6 @@
         <nameSegment>Convert_DateTime_using_Time_Zone</nameSegment>
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Get_Doctor_Available_Time_Slots</name>
-        <label>Get Doctor Available Time Slots</label>
-        <locationX>182</locationX>
-        <locationY>3398</locationY>
-        <actionName>Get_Doctor_Available_Time_Slots</actionName>
-        <actionType>generatePromptResponse</actionType>
-        <connector>
-            <targetReference>Assign_Final_Prompt_Response</targetReference>
-        </connector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>Input:PreviouslySeenDoctors</name>
-            <value>
-                <elementReference>PreviouslyInteractedDoctorNamesFinal</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>Input:DoctorEventBookedData</name>
-            <value>
-                <elementReference>Convert_DateTime_using_Time_Zone_Action_1.promptResponse</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>Input:DoctorData</name>
-            <value>
-                <elementReference>DoctorFinalData</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>Input:TimeSlotData</name>
-            <value>
-                <elementReference>TimeSlotFinalData</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>Get_Doctor_Available_Time_Slots</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Get_Specialty_based_on_Symptoms</name>
@@ -153,19 +217,19 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_Doctor_Available_Time_Slots</targetReference>
+            <targetReference>Get_Current_Date_Time_to_ITC</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Final_Prompt_Response</name>
         <label>Assign Final Prompt Response</label>
         <locationX>182</locationX>
-        <locationY>3506</locationY>
+        <locationY>3722</locationY>
         <assignmentItems>
             <assignToReference>AvailableDoctorSlots</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Get_Specialty_based_on_Symptoms.promptResponse</elementReference>
+                <elementReference>Get_Available_Slots.promptResponse</elementReference>
             </value>
         </assignmentItems>
     </assignments>
@@ -341,6 +405,8 @@
 &amp; {!Doctor_With_Final_Specialty_loop.RelatedRecord.LastName}
 &amp; &quot; (Doctor Id: &quot;
 &amp; {!Doctor_With_Final_Specialty_loop.RelatedRecordId}
+&amp; &quot; OperatingHoursId: &quot;
+&amp; {!Doctor_With_Final_Specialty_loop.Operating_Hours__c}
 &amp; &quot; Doctor Specialty: &quot;
 &amp; TEXT({!Doctor_With_Final_Specialty_loop.Specialty__c})
 &amp; &quot;) End of Row &quot;</expression>

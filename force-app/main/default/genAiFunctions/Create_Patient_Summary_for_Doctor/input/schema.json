@@ -1,0 +1,14 @@
+{
+  "required" : [ "eventId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "eventId" : {
+      "title" : "eventId",
+      "description" : "Pass the 18 digit Event record Id provided by the user. Ask the user for Id if not already provided.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

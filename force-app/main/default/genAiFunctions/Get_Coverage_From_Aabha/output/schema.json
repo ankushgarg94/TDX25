@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "aabhaResponse" : {
+      "title" : "aabhaResponse",
+      "description" : "Display the policy details:\n\nPolicy Number,\nCoverage Type,\nCoverage Provider,\nCoverage Period,\n\nFor Coverage Benefits:\n\nIf the user asks about coverage benefits, provide the following key coverage aspects (without getting into specifics):\n\nRoom Rent, ICU Charges, Emergency Ambulance, and Daycare Procedures.\n\nEnsure that you mention the benefits covered within the policy (e.g., covered amounts, limits, or types of services).\n\nExclude any non-coverage details:\n\nDo not include personal information such as name, address, phone number, or medical history.\n\nDo not mention other details like medical conditions, allergies, or procedures unless explicitly requested.\n\nIf the user asks for further clarification:\n\nIf the agent cannot generate a response, prompt the user to rephrase their query or ask for more specific information.",
+      "lightning:type" : "@apexClassType/ExternalService__GetPatientCoverageFromAabha_AabhaPatientCoverage_OUT_2XX?isAuraEnabled=true",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

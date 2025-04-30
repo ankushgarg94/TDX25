@@ -35,28 +35,73 @@
 	</types>
 	<types>
 		<members>Create_Patient_Record</members>
+		<members>Create_Patient_Summary_for_Doctor</members>
 		<members>Get_All_Available_Doctor_s_Time_Slots</members>
+		<members>Get_Coverage_From_Aabha</members>
 		<members>Get_Patient_By_Aadhar_Number</members>
+		<members>Get_Patient_Record</members>
+		<members>Log_Appointment_Summary</members>
+		<members>Past_Appointments</members>
+		<members>Perform_Agent_Actions</members>
+		<members>Route_to_patientpal</members>
+		<members>Schedule_Appointment_With_Doctor</members>
+		<members>Schedule_follow_up_appointment</members>
+		<members>Send_notification_to_Doctor_15_minutes_before_the_appointment</members>
+		<members>send_message_in_slack_by_agent</members>
 		<name>Flow</name>
 	</types>
 	<types>
-		<members>Convert_DateTime_using_Time_Zone</members>
-		<members>Get_Doctor_Available_Time_Slots</members>
-		<members>Get_Specialty_based_on_Symptoms</members>
+		<members>*</members>
+		<name>GenAiFunction</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>GenAiPlanner</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>GenAiPlugin</name>
+	</types>
+	<types>
+		<members>*</members>
 		<name>GenAiPromptTemplate</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>ManagedTopics</name>
+	</types>
+	<types>
+		<members>Patient_Pal_Channel</members>
+		<name>MessagingChannel</name>
 	</types>
 	<types>
 		<members>*</members>
 		<name>NamedCredential</name>
 	</types>
 	<types>
+		<members>HCP_Facing_Agent_Permissions</members>
+		<members>Insurance_Agent_Permissions</members>
+		<members>Patient_Facing_Agent_Permissions</members>
+		<members>Slack_Agent_Management</members>
 		<members>sfdcInternalInt__sfdc_a360_sfcrm_data_extract</members>
 		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>Patient_Pal_Config</members>
+		<name>PresenceUserConfig</name>
 	</types>
 	<types>
 		<members>Admin</members>
 		<members>Einstein Agent User</members>
 		<name>Profile</name>
+	</types>
+	<types>
+		<members>PatientPal</members>
+		<name>Queue</name>
+	</types>
+	<types>
+		<members>PatientPal_Routing_Configuration</members>
+		<name>QueueRoutingConfig</name>
 	</types>
 	<version>63.0</version>
 </Package>

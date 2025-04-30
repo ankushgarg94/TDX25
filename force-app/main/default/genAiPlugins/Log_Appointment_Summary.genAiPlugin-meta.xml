@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic is used to log appointment summary after an appointment is completed.</description>
+    <developerName>Log_Appointment_Summary</developerName>
+    <genAiFunctions>
+        <functionName>Log_Appointment_Summary</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>Once you receive appointment summary and event record Id from the user, pass it to the agent action named &apos;Log_Appointment_Summary&apos;.</description>
+        <developerName>instruction_onceyourec0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_onceyourec0</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Log Appointment Summary</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is only to log appointment summary after receiving the Appointment Summary text and Event record Id to identify the appointment</scope>
+</GenAiPlugin>

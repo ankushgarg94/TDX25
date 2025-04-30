@@ -30,8 +30,7 @@
 &quot;First Name: &quot; &amp; {!Get_Patient_Record.FirstName} &amp; BR() &amp;
 &quot;Last Name: &quot; &amp; {!Get_Patient_Record.LastName} &amp; BR() &amp;
 &quot;Gender: &quot; &amp; TEXT({!Get_Patient_Record.PersonGender}) &amp; BR() &amp;
-&quot;Mobile Number: &quot; &amp; {!Get_Patient_Record.PersonMobilePhone} &amp; BR() &amp;
-&quot;Aadhaar Number: &quot; &amp; {!Get_Patient_Record.Aadhaar_Number__c} &amp; BR()</expression>
+&quot;Mobile Number: &quot; &amp; {!Get_Patient_Record.PersonMobilePhone} &amp; BR()</expression>
     </formulas>
     <interviewLabel>Create Patient {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Patient Record</label>

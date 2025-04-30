@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic is used to schedule a follow up appointment for the patient</description>
+    <developerName>Schedule_follow_up_appointment</developerName>
+    <genAiFunctions>
+        <functionName>Schedule_follow_up_appointment</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When user requests to schedule a follow up appointment, collect Event record Id and Start Date Time for the follow up appointment and pass it to &apos;Schedule_follow_up_appointment&apos; agent action to schedule it.</description>
+        <developerName>instruction_whenuserre0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_whenuserre0</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Schedule follow up appointment</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is only to schedule a follow up appointment by using a given Event record Id and Start date time for follow up appointment</scope>
+</GenAiPlugin>

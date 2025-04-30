@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This prompt template is designed to extract relevant insurance-related information from documents uploaded by or related to patients, such as insurance cards, coverage letters, EOBs (Explanation of Benefits), or forms.</description>
+    <developerName>Get_Insurance_Details_From_Files</developerName>
+    <masterLabel>Get Insurance Details From Files</masterLabel>
+    <templateVersions>
+        <content>You are an intelligent assistant helping Doctors (HCPs) and Patients understand insurance coverage information based on the documents they’ve uploaded. Analyze the extracted file text and identify any relevant insurance coverage details.
+
+Provide a clear, concise summary of the key health insurance coverage details for patient. Extract the most important policy terms and coverage benefits, while omitting unnecessary technical jargon. The summary should be user-friendly, focusing on the coverage limits, waiting periods, exclusions, and special conditions. Present this in a structured way with bullet points or short sentences to help the user easily grasp the essentials of the policy. Focus on the following key aspects:
+
+Use the below content to frame your response:
+{!$EinsteinSearch:Account_Hybrid_Search_Retriever_1Cx_fJa77d63ff9.results}
+
+If insurance details are not found or unclear, indicate that appropriately.
+
+Present your answer in a clear, concise, and structured format.
+
+
+</content>
+        <inputs>
+            <apiName>Query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Query</masterLabel>
+            <referenceName>Input:Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>AccountId</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>AccountId</masterLabel>
+            <referenceName>Input:AccountId</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Account_Hybrid_Search_Retriever_1Cx_fJa77d63ff9</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Query}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>placeholder_Account_Id</parameterName>
+                <valueExpression>{!$Input:AccountId}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Chunk&quot;]</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Account_Hybrid_Search_Retriever_1Cx_fJa77d63ff9</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

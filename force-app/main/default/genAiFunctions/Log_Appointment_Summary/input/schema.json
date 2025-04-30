@@ -1,0 +1,21 @@
+{
+  "required" : [ "AppointmentSummary", "eventId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "AppointmentSummary" : {
+      "title" : "AppointmentSummary",
+      "description" : "Pass the appointment summary provided by the user. Ask for it if not already provided",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "eventId" : {
+      "title" : "eventId",
+      "description" : "Pass the 18 digit event record Id provided by the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

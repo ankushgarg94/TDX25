@@ -1,0 +1,24 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "AvailableDoctorSlots" : {
+      "title" : "AvailableDoctorSlots",
+      "description" : "Available Slots of Doctors of that date",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "DoctorFinalData" : {
+      "title" : "DoctorFinalData",
+      "description" : "This Data will Contain the Doctor Id and Doctor Name. Used to identify Doctor Id and by Doctor Name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_4</activeVersionIdentifier>
+    <description>Get Available Appointment Slots of Doctors for Patient</description>
+    <developerName>Get_Appointment_Slots_V3</developerName>
+    <masterLabel>Get Available Appointment Slots V3</masterLabel>
+    <templateVersions>
+        <content>You are given today&apos;s current time and a list of doctors. Each doctor has:
+- Name
+- Doctor ID
+- Specialty
+- Operating hours (e.g., 10:00 - 12:00)
+- Booked time slots (e.g., 10:30 - 11:00)
+- Whether they previously interacted with the patient (Yes/No)
+
+Your task is to generate **available 30-minute appointment slots per doctor**, ensuring the following rules are strictly followed.
+
+---
+
+Inputs:
+CurrentDateTime: {!$Input:Today_DateTime}
+AppointmentDate: {!$Input:Appointment_Date}
+DoctorTimingInfo: {!$Input:Doctor_Timing_Info}
+
+---
+
+Instructions:
+1. For each doctor:
+ - Keep the slots strictly between operating hours
+ - Generate all 30-minute slots from StartTime (inclusive) to EndTime (exclusive).
+ Strict:Consider this point only if AppointmentDate matches with Date of CurrentDateTime -  Only include slots that **start after CurrentDateTime**  
+ - Exclude slots that exactly match any booked time range.
+2. Time slots must be formatted in **12-hour format with AM/PM** (e.g., `10:00 AM - 10:30 AM`).
+3. If a doctor has `Previously Interacted: Yes`, show `(Preferred - Previously Seen)` next to the name.
+4. If **no slots are available**, output exactly: `No Slots Available`.
+5. Follow this **strict output format per doctor**:
+6. Don&apos;t forget to show slots if in next 10 mins it is free Example: If 10:30 - 11:00 is booked and Operating hrs is 10:00 to 12:00 if current time is 9:50 AM then you can show 10:00 AM slot
+
+Doctor Name: {Doctor Name} {(Preferred - Previously Seen if applicable)} | Specialty: {Specialty}  
+Available Time Slots: Slot 1: {Slot 1}, Slot 2: {Slot 2}, ...  
+
+6. End the response with:
+**Choose Doctor Name and Time Slot to schedule appointment.**
+
+</content>
+        <inputs>
+            <apiName>Doctor_Timing_Info</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Doctor Timing Info</masterLabel>
+            <referenceName>Input:Doctor_Timing_Info</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Appointment_Date</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Appointment Date</masterLabel>
+            <referenceName>Input:Appointment_Date</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Today_DateTime</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Today DateTime</masterLabel>
+            <referenceName>Input:Today_DateTime</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are given:
+
+• CurrentDateTime:{!$Input:Today_DateTime}
+• AppointmentDate: {!$Input:Appointment_Date}
+• DoctorTimingInfo: {!$Input:Doctor_Timing_Info} a list where each item has:  
+  – Name  
+  – DoctorID  
+  – Specialty  
+  – OperatingHours (e.g. “10:00 – 17:00”)  
+  – BookedSlots (list of “HH:MM – HH:MM” ranges for that doctor on AppointmentDate; may be empty)  
+  – PreviouslyInteracted (“Yes” or “No”)
+
+Your task is to generate **available 30-minute appointment slots per doctor**, following these rules:
+
+1. **Date Check:**  
+  - If AppointmentDate equals the date portion of CurrentDateTime, ignore all slots that end at or before the time portion of CurrentDateTime.  
+2. **Operating Hours:**  
+  - Generate all 30-minute intervals from OperatingHours start (inclusive) to end (exclusive).  
+3. **Exclude Booked:**  
+  - Remove any interval that exactly matches one of the doctor’s BookedSlots.  
+4. **Format:**  
+  - Show each slot as “hh:mm AM/PM – hh:mm AM/PM.”  
+5. **Preferred Flag:**  
+  - If PreviouslyInteracted is “Yes,” append “(Preferred – Previously Seen)” after the doctor’s name.  
+6. **No Availability:**  
+  - If no slots remain after exclusions, output **exactly**:  
+   `No Slots Available`
+
+**Output** each doctor like this:
+
+Doctor Name: {Name} {(Preferred – Previously Seen if applicable)} | Specialty: {Specialty}  
+Available Time Slots: Slot 1: {Slot 1}, Slot 2: {Slot 2}, …  
+
+If no slots, then:
+
+Doctor Name: {Name} {(Preferred – Previously Seen if applicable)} | Specialty: {Specialty}  
+No Slots Available  
+
+Finally, end with:
+
+**Choose Doctor Name and Time Slot to schedule appointment.**
+
+</content>
+        <inputs>
+            <apiName>Doctor_Timing_Info</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Doctor Timing Info</masterLabel>
+            <referenceName>Input:Doctor_Timing_Info</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Appointment_Date</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Appointment Date</masterLabel>
+            <referenceName>Input:Appointment_Date</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Today_DateTime</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Today DateTime</masterLabel>
+            <referenceName>Input:Today_DateTime</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content># INPUTS:
+#
+#  AppointmentDate  : {!$Input:Appointment_Date}  # e.g. 2025-04-30 
+# CurrentDateTime : {!$Input:Today_DateTime}  # e.g. 2025-04-30 09:00 AM Dont take this in to consideration if AppointmentDate Date &gt; CurrentDateTime
+#  DoctorTimingInfo : {!$Input:Doctor_Timing_Info} # list of doctors with: 
+#    – Name
+#    – DoctorID
+#    – Specialty
+#    – OperatingHours    (&quot;HH:MM - HH:MM&quot;, 24-hour)
+#    – BookedSlots      (zero-or-more &quot;HH:MM - HH:MM&quot; on AppointmentDate)
+#    – PreviouslyInteracted (&quot;Yes&quot; | &quot;No&quot;)
+#
+# GOAL ► For each doctor, output every 30-minute slot that can still be
+#    booked on AppointmentDate, following the exact rules below.
+#===================================================================
+ 
+## ONE-DOCTOR-AT-A-TIME LOOP #######################################
+For each doctor record, execute this algorithm independently:
+ 
+  1. Parse OperatingHours → start_time , end_time  (end_time EXCLUSIVE).
+ 
+  2. Build a timeline of contiguous 30-minute blocks:
+     block_start = start_time
+     while block_start + 30 min ≤ end_time:
+       block_end = block_start + 30 min
+       add [block_start , block_end) to grid
+       block_start += 30 min
+ 
+  3. SAME-DAY filter  
+    if date(AppointmentDate) == date(CurrentDateTime):
+      # “after-NOW”: keep only blocks whose **block_start &gt;= time(CurrentDateTime)**
+      grid = [block for block in grid if block.start &gt;= time(CurrentDateTime)]
+ 
+  4. BOOKED filter  
+    For each block in grid:
+      remove it **only if** there exists a pair in BookedSlots
+      whose booked_start == block.start AND booked_end == block.end
+ 
+  5. Format surviving blocks  → &quot;hh:mm AM/PM – hh:mm AM/PM&quot;
+ 
+  6. If PreviouslyInteracted == &quot;Yes&quot;:
+      append text &quot;(Preferred – Previously Seen)&quot; right after the name.
+ 
+  7. If no blocks remain → output exactly: No Slots Available
+ 
+## OUTPUT FORMAT (verbatim) ######################################
+Doctor Name: {Name}{ (Preferred – Previously Seen) if applicable} | Specialty: {Specialty}
+Available Time Slots: Slot 1: {slot-1}, Slot 2: {slot-2}, …
+ 
+# If none remain:
+Doctor Name: {Name}{ (Preferred – Previously Seen) if applicable} | Specialty: {Specialty}
+No Slots Available
+ 
+## FINAL PROMPT ###################################################
+**Choose Doctor Name and Time Slot to schedule appointment.**
+####################################################################
+</content>
+        <inputs>
+            <apiName>Today_DateTime</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Today DateTime</masterLabel>
+            <referenceName>Input:Today_DateTime</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Appointment_Date</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Appointment Date</masterLabel>
+            <referenceName>Input:Appointment_Date</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Doctor_Timing_Info</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Doctor Timing Info</masterLabel>
+            <referenceName>Input:Doctor_Timing_Info</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_4</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

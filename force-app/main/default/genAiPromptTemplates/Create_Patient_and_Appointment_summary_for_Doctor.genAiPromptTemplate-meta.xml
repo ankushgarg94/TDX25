@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_3</activeVersionIdentifier>
+    <description>This template is used to create Patient and appointment summary for doctor 15 minutes before the appointment.</description>
+    <developerName>Create_Patient_and_Appointment_summary_for_Doctor</developerName>
+    <masterLabel>Create Patient and Appointment summary for Doctor</masterLabel>
+    <templateVersions>
+        <content>Your task is to generate a notification message for the doctor, to be sent 15 minutes before the scheduled appointment. The message should include the following:
+The doctor&apos;s name (as provided below).
+Key details about the patient, including the reason for the upcoming appointment.
+A summary of the historical encounter data.
+The duration of the upcoming appointment.
+Patient Data: {!$Input:PatientData}
+Appointment Details: {!$Input:CurrentClinicalEncounter}
+Historical Appointment Details: {!$Input:HistoricalEncounterData}
+</content>
+        <inputs>
+            <apiName>PatientData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PatientData</masterLabel>
+            <referenceName>Input:PatientData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>CurrentClinicalEncounter</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>CurrentClinicalEncounter</masterLabel>
+            <referenceName>Input:CurrentClinicalEncounter</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>HistoricalEncounterData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>HistoricalEncounterData</masterLabel>
+            <referenceName>Input:HistoricalEncounterData</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Your task is to generate a notification message for the doctor, to be sent 15 minutes before the scheduled appointment. The message should include the following:
+The doctor&apos;s name (as provided below).
+Key details about the patient, including the reason for the upcoming appointment.
+A summary of the historical encounter data.
+The duration of the upcoming appointment.
+Patient Data: {!$Input:PatientData}
+Appointment Details: {!$Input:CurrentClinicalEncounter}
+Historical Appointment Details: {!$Input:HistoricalEncounterData}
+
+Instead of ending the message with &quot;Best regards&quot; or similar phrases, simply ask if there is anything else the doctor would like to know.
+</content>
+        <inputs>
+            <apiName>PatientData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PatientData</masterLabel>
+            <referenceName>Input:PatientData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>CurrentClinicalEncounter</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>CurrentClinicalEncounter</masterLabel>
+            <referenceName>Input:CurrentClinicalEncounter</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>HistoricalEncounterData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>HistoricalEncounterData</masterLabel>
+            <referenceName>Input:HistoricalEncounterData</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Your task is to generate a notification message for the doctor, to be sent 15 minutes before the scheduled appointment. The message should include the following:
+The doctor&apos;s name (as provided below).
+Key details about the patient, including the reason for the upcoming appointment.
+A summary of the historical encounter data.
+The duration of the upcoming appointment.
+Patient Data: {!$Input:PatientData}
+Appointment Details: {!$Input:CurrentClinicalEncounter}
+Recent Appointment Details: {!$Input:HistoricalEncounterData}
+
+Instead of ending the message with &quot;Best regards&quot; or similar phrases, simply ask if there is anything else the doctor would like to know.
+</content>
+        <inputs>
+            <apiName>HistoricalEncounterData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>HistoricalEncounterData</masterLabel>
+            <referenceName>Input:HistoricalEncounterData</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>CurrentClinicalEncounter</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>CurrentClinicalEncounter</masterLabel>
+            <referenceName>Input:CurrentClinicalEncounter</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>PatientData</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>PatientData</masterLabel>
+            <referenceName>Input:PatientData</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

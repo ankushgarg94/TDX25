@@ -1,0 +1,24 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "coverageResponseSF" : {
+      "title" : "coverageResponseSF",
+      "description" : "The coverageResponse contains structured information about the user's coverage details, including coverage type, provider, period, eligible services, and other relevant details. Use this response to process and understand the coverage context. If the user has explicitly asked for coverage details, such as \"What are my coverage details?\" or \"Tell me about my insurance benefits,\" display the coverageResponse in a clear and well-formatted way, ensuring that only the relevant details like coverage provider, coverage type, coverage period, and eligible services are presented. Avoid displaying any internal identifiers like CoverageBenefitId, MemberId, or system metadata. If the user has specifically asked for ABHA coverage details, do not display the coverageResponse. If the coverageResponse is empty or incomplete, inform the user with a friendly message, like \"No coverage details found\" or \"I couldn't retrieve your coverage information.\" If no specific query or action related to coverage is detected, do not display the coverageResponse directly, but rather route the conversation to gather more information or wait for the user’s next query.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "patientResponse" : {
+      "title" : "patientResponse",
+      "description" : "This output receives a structured text summary of the patient record from the Flow (e.g., Name, Date of Birth, Gender). Use this response for the agent's internal understanding and context building — do not display it directly to the user if the user has already asked for a specific query or action related to the patient. If the user has requested a specific action (e.g., coverage details), use the patientResponse to inform the agent's decision, then trigger the appropriate follow-up agent action without surfacing this response. If no specific query or action is detected in the user’s message, display the patientResponse in a clear and well-formatted way to confirm the patient has been identified. Ensure AccountId or any internal identifiers are not shown in the response under any circumstance.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

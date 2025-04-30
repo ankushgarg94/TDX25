@@ -1,0 +1,21 @@
+{
+  "required" : [ "eventId", "startDateTime" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "eventId" : {
+      "title" : "eventId",
+      "description" : "Pass the event record Id provided by the user",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "startDateTime" : {
+      "title" : "startDateTime",
+      "description" : "Pass the start date time provided by the user for scheduling follow up",
+      "lightning:type" : "lightning__dateTimeStringType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

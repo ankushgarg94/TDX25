@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This action takes an Aadhar Number as input from the user.
+
+It triggers a Flow that searches for a Patient (Account) record matching the given Aadhar Number.
+
+The Flow composes a formatted text response (including details such as Name, Date of Birth, and Gender) and returns it in the variable patientResponse.
+
+Upon receiving the response:
+
+Do not display the AccountId at any point.
+
+If patientResponse is null or empty, generate a dynamic, user-friendly message indicating that the patient could not be found.
+
+If patientResponse contains valid data, display it in a structured format with proper line breaks for clarity.
+
+After displaying the response, check if the user&apos;s original input also included a specific action or query (e.g., coverage details, or elegibilty).
+
+If a specific query or action is detected, route the conversation accordingly by triggering the relevant agent action.
+
+If no follow-up intent is found, ask the user what they&apos;d like to do next with the patient information.</description>
+    <invocationTarget>Get_Patient_By_Aadhar_Number</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <masterLabel>Get Patient By Aadhar Number</masterLabel>
+</GenAiFunction>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Past_Appointments_Summary</name>
+        <label>Past Appointments Summary</label>
+        <locationX>176</locationX>
+        <locationY>542</locationY>
+        <actionName>Past_Appointments_Summary</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Assign_Past_Event_Summary</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:EventData</name>
+            <value>
+                <elementReference>EventTextData</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Past_Appointments_Summary</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Event_Text_Data</name>
+        <label>Assign Event Text Data</label>
+        <locationX>264</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>EventTextData</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>EachEventData</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Event_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Past_Event_Summary</name>
+        <label>Assign Past Event Summary</label>
+        <locationX>176</locationX>
+        <locationY>650</locationY>
+        <assignmentItems>
+            <assignToReference>PatientsPastEventOutput</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Past_Appointments_Summary.promptResponse</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>EachEventData</name>
+        <dataType>String</dataType>
+        <expression>&quot;(&quot; &amp; TEXT({!Loop_Event_Records.StartDateTime}) &amp; 
+&quot; to &quot; &amp; TEXT({!Loop_Event_Records.EndDateTime}) &amp; 
+&quot;) Doctor: &quot; &amp; {!Loop_Event_Records.Owner:User.FirstName} &amp; 
+&quot; &quot; &amp; {!Loop_Event_Records.Owner:User.LastName} &amp;
+&quot;End of Row&quot;</expression>
+    </formulas>
+    <interviewLabel>Past Appointments {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Past Appointments</label>
+    <loops>
+        <name>Loop_Event_Records</name>
+        <label>Loop Event Records</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <collectionReference>Get_Event_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Event_Text_Data</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Past_Appointments_Summary</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Event_Records</name>
+        <label>Get Event Records</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Event_Records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>PatientId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ServiceAppointmentId</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StartDateTime</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Event</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Event_Records</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>EventTextData</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Id of the Patient</description>
+        <name>PatientId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Patient&apos;s Past Events</description>
+        <name>PatientsPastEventOutput</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

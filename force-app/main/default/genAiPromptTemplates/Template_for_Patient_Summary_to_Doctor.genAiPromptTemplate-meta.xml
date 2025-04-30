@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</activeVersionIdentifier>
+    <description>This template is used to generate patient summary to be shared with Doctor 15 minutes before the appointment</description>
+    <developerName>Template_for_Patient_Summary_to_Doctor</developerName>
+    <masterLabel>Template for Patient Summary to Doctor</masterLabel>
+    <templateVersions>
+        <content>Please generate a message addressed to Dr. {!$Input:Doctor_Name}, informing him of his upcoming appointment in the next 15 minutes. The appointment will last for {!$Input:Clinical_Encounter.ServiceAppointment.Duration}  minutes with a patient named {!$Input:Patient.FirstName} {!$Input:Patient.LastName}.
+Ensure to include a patient summary using the following details:
+Patient Details: {!$RecordSnapshot:Patient.Snapshot}
+Additionally, the patient has reported the following symptoms for this appointment: {!$Input:Clinical_Encounter.Reason__c}
+When crafting the message, be sure to include any notable mentions in the reason and outcome fields of the Clinical Encounter for this patient.
+Please base your response strictly on the instructions and provided details.
+</content>
+        <inputs>
+            <apiName>Clinical_Encounter</apiName>
+            <definition>SOBJECT://ClinicalEncounter</definition>
+            <masterLabel>Clinical Encounter</masterLabel>
+            <referenceName>Input:Clinical_Encounter</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient</masterLabel>
+            <referenceName>Input:Patient</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Doctor_Name</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Doctor Name</masterLabel>
+            <referenceName>Input:Doctor_Name</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Patient.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Patient</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Please generate a message addressed to Dr. {!$Input:Doctor_Name}, informing him of his upcoming appointment in the next 15 minutes. The appointment will last for {!$Input:Clinical_Encounter.ServiceAppointment.Duration}  minutes with a patient named {!$Input:Patient.FirstName} {!$Input:Patient.LastName}.
+Ensure to include a patient summary using the following details:
+Patient Details: {!$RecordSnapshot:Patient.Snapshot}
+Additionally, the patient has reported the following symptoms for this appointment: {!$Input:Clinical_Encounter.Reason__c}
+When crafting the message, be sure to include any notable mentions in the reason and outcome fields of the Clinical Encounter for this patient.
+Please base your response strictly on the instructions and provided details.
+Do not mention details such as ID, last modified dates, or created dates under any circumstances.
+</content>
+        <inputs>
+            <apiName>Clinical_Encounter</apiName>
+            <definition>SOBJECT://ClinicalEncounter</definition>
+            <masterLabel>Clinical Encounter</masterLabel>
+            <referenceName>Input:Clinical_Encounter</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient</masterLabel>
+            <referenceName>Input:Patient</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Doctor_Name</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Doctor Name</masterLabel>
+            <referenceName>Input:Doctor_Name</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Patient.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Patient</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Please generate a message addressed to Dr. {!$Input:Doctor_Name}, informing him of his upcoming appointment in the next 15 minutes. The appointment will last for {!$Input:Clinical_Encounter.ServiceAppointment.Duration}  minutes with a patient named {!$Input:Patient.FirstName} {!$Input:Patient.LastName}.
+Ensure to include a patient summary using the following details:
+Patient Details:
+Additionally, the patient has reported the following symptoms for this appointment: {!$Input:Clinical_Encounter.Reason__c}
+When crafting the message, be sure to include any notable mentions in the reason and outcome fields of the Clinical Encounter for this patient.
+Please base your response strictly on the instructions and provided details.
+Do not mention details such as ID, last modified dates, or created dates under any circumstances.
+</content>
+        <inputs>
+            <apiName>Doctor_Name</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Doctor Name</masterLabel>
+            <referenceName>Input:Doctor_Name</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Patient</apiName>
+            <definition>SOBJECT://Account</definition>
+            <masterLabel>Patient</masterLabel>
+            <referenceName>Input:Patient</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Clinical_Encounter</apiName>
+            <definition>SOBJECT://ClinicalEncounter</definition>
+            <masterLabel>Clinical Encounter</masterLabel>
+            <referenceName>Input:Clinical_Encounter</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>RNdN0bzYgXSRozanm4j0hJTEJ+pgiLf2k2216zb0U+k=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

@@ -1,0 +1,14 @@
+{
+  "required" : [ "aadharNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "aadharNumber" : {
+      "title" : "aadharNumber",
+      "description" : "The aadharNumber is required to fetch the ABHA (Ayushman Bharat Health Account) coverage details through the API callout.\n\nGuidelines:\n\nPrompt for Aadhaar Number:\n\nIf the user requests coverage details specifically from ABHA (e.g., \"Get coverage details from ABHA\"), prompt the user to provide their Aadhaar Number if it hasn't been entered already.\n\nExample prompts:\n\n\"Please provide your Aadhaar number to fetch your ABHA coverage details.\"\n\n\"I need your Aadhaar number to get your ABHA coverage information.\"\n\n\"Could you please share your Aadhaar number for ABHA verification?\"\n\nAadhaar Number Format:\n\nThe Aadhaar number should be a 12-digit numeric value.\n\nEnsure the input is validated to check if it is a valid 12-digit number. If the input is not valid, prompt the user again.\n\nExample validation messages:\n\n\"The Aadhaar number you entered is invalid. Please enter a valid 12-digit Aadhaar number.\"\n\n\"I need a valid 12-digit Aadhaar number to proceed. Please try again.\"\n\nHandling Missing Aadhaar Number:\n\nIf the Aadhaar number is not provided by the user, ask again to ensure it is captured before proceeding with the ABHA API callout.\n\nExample prompt for missing Aadhaar number:\n\n\"I cannot fetch your ABHA coverage details without your Aadhaar number. Could you please share it?\"\n\n",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

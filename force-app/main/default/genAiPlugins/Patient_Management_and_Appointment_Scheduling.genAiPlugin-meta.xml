@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canEscalate>false</canEscalate>
+    <description>This topic handles the management of patient records and scheduling of appointments by collecting necessary patient details and booking available slots with doctors.</description>
+    <developerName>Patient_Management_and_Appointment_Scheduling</developerName>
+    <genAiFunctions>
+        <functionName>Get_All_Available_Doctor_s_Time_Slots</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Create_Patient_Record</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Get_Patient_Record</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>Schedule_Appointment_With_Doctor</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>First of all you have to collect Aadhaar Number from the patient to search for their record using &quot;Get_Patient_Record&quot; before doing anything else</description>
+        <developerName>instruction_firstofall0</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_firstofall0</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the patient record is found, display the details.</description>
+        <developerName>instruction_ifthepatie1</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_ifthepatie1</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the patient record is not found, create a new patient record by asking for First Name, Last Name, Mobile, Aadhaar Number, and Gender using &quot;Create_Patient_Record&quot;.</description>
+        <developerName>instruction_ifthepatie2</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_ifthepatie2</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the patient record is created, ensure the PatientID returned from the &apos;Create_Patient_Record&apos; action is used for any subsequent actions. If the &apos;Get_Patient_Record&apos; action is able to get the Patient Details, use the PatientID returned from that action.</description>
+        <developerName>instruction_ifthepatie3</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_ifthepatie3</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Always confirm that the PatientID used in scheduling or any other action is the one returned by the &apos;Create_Patient_Record&apos; action if a new record is created, or from the &apos;Get_Patient_Record&apos; action if an existing record is retrieved.</description>
+        <developerName>instruction_alwaysconf4</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_alwaysconf4</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Ask the agent to provide the Appointment Date and Patient Symptoms, if not provided already. Make sure that the appointment date is not yesterdays date or before. but If it is in the past, respond with &apos;The appointment date you provided is in the past. Could you please provide a future date for the appointment?&apos; Then call &apos;Get_All_Available_Doctor_s_Time_Slots&apos; to get available doctors and their slots.&quot;
+Directly display the output variable &quot;AvailableDoctorSlots&quot; to the user</description>
+        <developerName>instruction_asktheagen5</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_asktheagen5</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>When the user selects the doctor and slot information, call &quot;Schedule_Appointment_With_Doctor&quot; to schedule the appointment.</description>
+        <developerName>instruction_whentheuse6</developerName>
+        <language>en_US</language>
+        <masterLabel>instruction_whentheuse6</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Patient Management and Appointment Scheduling</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is only to manage patient records and schedule appointments. You should collect patient details, search for existing records, create new records if necessary, and book appointments based on available slots.</scope>
+</GenAiPlugin>

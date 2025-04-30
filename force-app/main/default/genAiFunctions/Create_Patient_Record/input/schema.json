@@ -1,0 +1,49 @@
+{
+  "required" : [ "AadhaarNumber", "PatientBirthDate", "PatientFirstName", "PatientGender", "PatientLastName", "PatientMobileNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "AadhaarNumber" : {
+      "title" : "AadhaarNumber",
+      "description" : "This is a 12 digit field which contains only numbers but is received as a text. Get this detail from the user. Tell them to enter without any special charater",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "PatientBirthDate" : {
+      "title" : "PatientBirthDate",
+      "description" : "This is the birth date of the patient.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "PatientFirstName" : {
+      "title" : "PatientFirstName",
+      "description" : "First Name of the patient",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "PatientGender" : {
+      "title" : "PatientGender",
+      "description" : "Patient Gender. Make sure the value is either of the below 2 values only. \nMale \nFemale",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "PatientLastName" : {
+      "title" : "PatientLastName",
+      "description" : "Last Name of the patient",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "PatientMobileNumber" : {
+      "title" : "PatientMobileNumber",
+      "description" : "This is the mobile number of the patient which should be a 10 digit number.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

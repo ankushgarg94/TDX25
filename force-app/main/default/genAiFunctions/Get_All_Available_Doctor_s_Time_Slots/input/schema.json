@@ -1,0 +1,28 @@
+{
+  "required" : [ "DateOfAppointment", "PatientId", "Symptoms" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "DateOfAppointment" : {
+      "title" : "DateOfAppointment",
+      "description" : "The Date the Patient want to schedule the appointment. Change the Date to Salesforce Format Example (2025-04-30) and send the input",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "PatientId" : {
+      "title" : "PatientId",
+      "description" : "This is an 18 digit Account ID (Patient ID) of the Patient (Account record) in context. Do not ask this ID from the user. Get the account Id for the account in context ",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Symptoms" : {
+      "title" : "Symptoms",
+      "description" : "Symptoms of the Patient",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

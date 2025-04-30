@@ -1,0 +1,14 @@
+{
+  "required" : [ "aadharNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "aadharNumber" : {
+      "title" : "aadharNumber",
+      "description" : "Accept the patient's 12-digit Aadhar Number as a required input.\n\nEnsure the input contains only numeric characters (no spaces or special characters).\n\nValidate that the length is exactly 12 digits before proceeding.\n\nThis number is used to look up the corresponding patient record in the Flow.\n\nPrompt the user clearly if the input is missing or incorrectly formatted, and request a valid 12-digit Aadhar Number.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

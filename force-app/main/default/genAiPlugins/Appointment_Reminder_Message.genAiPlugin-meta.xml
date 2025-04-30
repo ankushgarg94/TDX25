@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic handles creating message for doctors about upcoming appointments with patients, including a brief patient summary and recent clinical encounters.</description>
+    <developerName>Appointment_Reminder_Message</developerName>
+    <genAiFunctions>
+        <functionName>Create_Patient_Summary_for_Doctor</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>Get 18 digit Event record Id from the user if not already provided. Then pass it to &quot;Create_Patient_Summary_for_Doctor&quot; agent action then show the message as it is to the user.</description>
+        <developerName>instruction_getdigitev0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_getdigitev0</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Appointment Reminder Message</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is only to create a message for the doctor about their upcoming appointment with a patient 15 minutes before the appointment, providing basic patient details along with reason for appointment and summary of other recent clinical encounters which will include their reason and outcome.</scope>
+</GenAiPlugin>
